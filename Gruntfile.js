@@ -84,12 +84,12 @@ module.exports = function (grunt) {
 		'clean:dist',
 		'clean:update',
 		'build',
-		//'exec:codesign', // mac
-		//'exec:createDmg', // mac
-		//'exec:createWinInstall',
+		'exec:codesign', // mac
+		'exec:createDmg', // mac
+		'exec:createWinInstall',
 		'exec:pruneProduction',
 		'exec:createLinuxInstall',
-		//'exec:createWinUpdate',
+		'exec:createWinUpdate',
 		'package' // all platforms
 	]);
 
@@ -217,7 +217,7 @@ module.exports = function (grunt) {
 				linux32: buildPlatforms.linux32,
 				linux64: buildPlatforms.linux64,
 				linuxarm: buildPlatforms.linuxarm,
-				download_url: 'http://get.popcorntime.io/nw/'
+				download_url: 'http://get.popcorntime.io/nw/',
 				arm_download_url: 'http://localhost/nw/'
 			},
 			src: ['./src/**', '!./src/app/styl/**',

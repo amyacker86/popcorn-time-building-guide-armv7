@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       downloadDone = [],
       options = this.options({
           version: '0.9.2',
-	  arm_version: '0.12.0',
+	  arm_version: null,
           app_name: null,
           app_version: null,
           build_dir: null, // Path where
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
         'app': '%APPNAME%',
         'exclude': ['nwsnapshot']
       }, {
-        'url': "v%ARM_VERSION%/nwjs-v%ARM_VERSION%-linux-arm.tar.gz",
+        'url': "v%VERSION%/nwjs-v%VERSION%-linux-arm.tar.gz",
         'type': 'linuxarm',
         'files': ['nw', 'nw.pak', 'libffmpegsumo.so', 'icudtl.dat'],
         'nwpath': 'nw',
@@ -145,18 +145,28 @@ module.exports = function(grunt) {
     webkitFiles.forEach(function(plattform) {
       if (options[plattform.type]) {
         if (plattform.type === 'linuxarm') {
-		plattform.url = options.download_url + plattform.url.split('%ARM_VERSION%').join(options.version);
+		plattform.url = options.arm_download_url + plattform.url.split('%VERSION%').join(options.arm_version);
 	} else {
 		plattform.url = options.download_url + plattform.url.split('%VERSION%').join(options.version);
 	}
         plattform.app = plattform.app.split('%APPNAME%').join(options.app_name);
         plattform.nwpath = plattform.nwpath.split('%APPNAME%').join(options.app_name);
-        plattform.dest = path.resolve(
-          options.build_dir,
-          'cache',
-          plattform.type,
-          options.version
-        );
+	
+        if (plattform.type === 'linuxarm') {
+		plattform.dest = path.resolve(
+		  options.build_dir,
+		  'cache',
+		  plattform.type,
+		  options.arm_version
+		);
+	} else {
+		plattform.dest = path.resolve(
+		  options.build_dir,
+		  'cache',
+		  plattform.type,
+		  options.version
+		);
+	}
 
         // If force is true we delete the path
         if (grunt.file.isDir(plattform.dest) && options.force_download) {
@@ -277,7 +287,11 @@ module.exports = function(grunt) {
         if(!options.keep_nw) {
           compress.cleanUpRelease(zipFile);
         }
-        grunt.log.oklns('Created a new release with node-webkit ('+options.version+') for '+plattforms.join(', '));
+	if (options.arm_version) {
+		grunt.log.oklns('Created a new release with node-webkit ('+options.version+') and ('+options.arm_version+') for '+plattforms.join(', '));
+	} else {
+		grunt.log.oklns('Created a new release with node-webkit ('+options.version+') for '+plattforms.join(', '));
+	}
         grunt.log.ok('@ ' + release_path);
         done();
       });
