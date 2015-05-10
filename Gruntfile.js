@@ -205,7 +205,8 @@ module.exports = function (grunt) {
 
 		nodewebkit: {
 			options: {
-				version: '0.12.0',
+				version: '0.9.2',
+				arm_version: '0.12.0',
 				build_dir: './build', // Where the build version of my node-webkit app is saved
 				keep_nw: true,
 				embed_nw: false,
@@ -216,7 +217,8 @@ module.exports = function (grunt) {
 				linux32: buildPlatforms.linux32,
 				linux64: buildPlatforms.linux64,
 				linuxarm: buildPlatforms.linuxarm,
-				download_url: 'http://192.168.1.201/nw/'
+				download_url: 'http://get.popcorntime.io/nw/'
+				arm_download_url: 'http://localhost/nw/'
 			},
 			src: ['./src/**', '!./src/app/styl/**',
 				'./node_modules/**', '!./node_modules/bower/**', '!./node_modules/*grunt*/**', '!./node_modules/stylus/**',
@@ -239,7 +241,7 @@ module.exports = function (grunt) {
 				cmd: '"build/cache/linux64/<%= nodewebkit.options.version %>/nw" .'
 			},
 			linuxarm: {
-				cmd: '"build/cache/linuxarm/<%= nodewebkit.options.version %>/nw" --use-gl=egl .'
+				cmd: '"build/cache/linuxarm/<%= nodewebkit.options.arm_version %>/nw" --use-gl=egl .'
 			},
 			codesign: {
 				cmd: 'sh dist/mac/codesign.sh || echo "Codesign failed, likely caused by not being run on mac, continuing"'

@@ -31,6 +31,7 @@ module.exports = function(grunt) {
       downloadDone = [],
       options = this.options({
           version: '0.9.2',
+	  arm_version: '0.12.0',
           app_name: null,
           app_version: null,
           build_dir: null, // Path where
@@ -42,6 +43,7 @@ module.exports = function(grunt) {
           linuxarm: false,
           mac_icns: false,
           download_url: 'http://dl.node-webkit.org/',
+          armdownload_url: 'http://localhost/',
           timestamped_builds: false,
           credits: false,
           keep_nw: false,
@@ -76,7 +78,7 @@ module.exports = function(grunt) {
         'app': '%APPNAME%',
         'exclude': ['nwsnapshot']
       }, {
-        'url': "v%VERSION%/nwjs-v%VERSION%-linux-arm.tar.gz",
+        'url': "v%ARM_VERSION%/nwjs-v%ARM_VERSION%-linux-arm.tar.gz",
         'type': 'linuxarm',
         'files': ['nw', 'nw.pak', 'libffmpegsumo.so', 'icudtl.dat'],
         'nwpath': 'nw',
@@ -142,7 +144,11 @@ module.exports = function(grunt) {
     // Download and unzip / untar the needed files
     webkitFiles.forEach(function(plattform) {
       if (options[plattform.type]) {
-        plattform.url = options.download_url + plattform.url.split('%VERSION%').join(options.version);
+        if (plattform.type === 'linuxarm') {
+		plattform.url = options.download_url + plattform.url.split('%ARM_VERSION%').join(options.version);
+	} else {
+		plattform.url = options.download_url + plattform.url.split('%VERSION%').join(options.version);
+	}
         plattform.app = plattform.app.split('%APPNAME%').join(options.app_name);
         plattform.nwpath = plattform.nwpath.split('%APPNAME%').join(options.app_name);
         plattform.dest = path.resolve(
