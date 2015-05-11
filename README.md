@@ -17,16 +17,17 @@ For building Popcorn time you will need to install a webserver first. The webser
 #### Clone git repository
 Execute in terminal:
   - `cd ~`
-  - `git clone git@git.popcorntime.io:popcorntime/desktop.git -b v0.3.7.2 desktop`
-  - `cd desktop`
-  - `sudo npm install -g grunt-cli bower`
-  - `sudo npm install`
+  - `mkdir workspace`
+  - download and copy `make_popcorn.sh` to workspace directory
+  - `cd workspace`
+  - execute `./make_popcorn.sh '-b v0.3.7.2 https://git.popcorntime.io/popcorntime/desktop.git'` and accept default settings
+  - `cd popcorn-app`
 
 #### Change building script and node-webkit-builder
   - download files: `Gruntfile.js` and `node_webkit_builder.js`
-  - override files `~/desktop/Gruntfile.js` and `~/desktop/node_modules/grunt-node-webkit-builder/tasks/node_webkit_builder.js` with downloaded files
+  - override files `~/workspace/popcorntime-app/Gruntfile.js` and `~/workspace/popcorntime-app/node_modules/grunt-node-webkit-builder/tasks/node_webkit_builder.js` with downloaded files
 
 #### Build and run application
 Execute in terminal:
-  - `grunt build`
+  - in popcorn-app directory run: `grunt build`
   - `grunt start`
