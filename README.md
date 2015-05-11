@@ -25,7 +25,7 @@ Execute in terminal:
 
 #### Change building script and node-webkit-builder
   - download files: `Gruntfile.js` and `node_webkit_builder.js`
-  - override files `~/workspace/popcorntime-app/Gruntfile.js` and `~/workspace/popcorntime-app/node_modules/grunt-node-webkit-builder/tasks/node_webkit_builder.js` with downloaded files
+  - override files `~/workspace/popcorn-app/Gruntfile.js` and `~/workspace/popcorn-app/node_modules/grunt-node-webkit-builder/tasks/node_webkit_builder.js` with downloaded files
 
 #### Build and run application
 Execute in terminal:
