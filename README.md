@@ -17,6 +17,9 @@ For building Popcorn time you will need to install a webserver first. The webser
 #### Clone git repository
 Execute in terminal:
   - `cd ~`
+  - `sudo apt-get update`
+  - `sudo apt-get install nodejs-legacy`
+  - `sudo apt-get install npm`
   - `mkdir workspace`
   - download and copy `make_popcorn.sh` to workspace directory
   - `cd workspace`
