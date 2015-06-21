@@ -183,13 +183,5 @@ if [ "${rd_dep}" = "yes" ]; then
     fi
 
     echo "Successfully setup for Popcorn Time"
-fi
-
-if grunt build; then
-    echo "Popcorn Time built successfully!"
-    echo "Run 'grunt start' from inside the repository to launch the app"
-    echo "Enjoy!"
-else
-    echo "Popcorn Time encountered an error and couldn't be built"
-    exit 5
+    echo "Continue following directions within the README.md to finish the build process." 
 fi
