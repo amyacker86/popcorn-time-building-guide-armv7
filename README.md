@@ -35,5 +35,5 @@ Execute in terminal:
 
 #### Build and run application
 Execute in terminal:
-  - in popcorn-app directory run: `grunt build`
+  - in popcorn-app directory run: `grunt build --force`
   - `grunt start`
