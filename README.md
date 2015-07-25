@@ -4,6 +4,9 @@ This is an experimental build for Odroid-U3. I never tried on other devices, so 
 
 Some videos/audios can't be decoded yet due to lack of codecs on nwjs. 
 
+### Why is Popcorn Time not available for ARMv7 linux?
+The main reason why Popcorn Time is not supported officially is because it's framework called nw.js is not released officially for ARMv7 architecture. Anyway some unofficial builds are available on some forums over the internet. The following tutorial explains how you can build Popcorn Time for linux ARMv7 architecture.
+
 ### Instalation guide
 https://git.popcorntime.io/laslaul/popcorn-time-installation-guide-armv7
 
