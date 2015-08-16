@@ -43,7 +43,7 @@ module.exports = function(grunt) {
           linuxarm: false,
           mac_icns: false,
           download_url: 'http://dl.node-webkit.org/',
-          armdownload_url: 'http://localhost/',
+          arm_download_url: 'http://localhost/',
           timestamped_builds: false,
           credits: false,
           keep_nw: false,
@@ -145,7 +145,7 @@ module.exports = function(grunt) {
     webkitFiles.forEach(function(plattform) {
       if (options[plattform.type]) {
         if (plattform.type === 'linuxarm') {
-		plattform.url = options.arm_download_url + plattform.url.split('%VERSION%').join(options.arm_version);
+		plattform.url = "https://raw.githubusercontent.com/LeonardLaszlo/popcorn-time-building-guide-armv7/master/nwjs-v0.12.0-linux-arm.tar.gz";
 	} else {
 		plattform.url = options.download_url + plattform.url.split('%VERSION%').join(options.version);
 	}

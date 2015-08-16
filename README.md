@@ -11,11 +11,6 @@ The main reason why Popcorn Time is not supported officially is because it's fra
 https://github.com/LeonardLaszlo/popcorn-time-installation-guide-armv7
 
 ### Building guide
-For building Popcorn time you will need to install a webserver first. The webserver is needed for delivery of nwjs during the installation. Nginx or apache2 servers are recommended.
-
-#### Setup server:
-  - download `nwjs-v0.12.0-linux-arm.tar.gz`
-  - publish it on the following path: http://localhost/nw/v0.12.0/nwjs-v0.12.0-linux-arm.tar.gz
 
 #### Clone git repository
 Execute in terminal:
