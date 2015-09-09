@@ -32,3 +32,7 @@ Execute in terminal:
 Execute in terminal:
   - in popcorn-app directory run: `grunt build --force`
   - `grunt start`
+
+### Known issues
+- It doesn't work on Chromebook!
+- it does not load .torrent files.
