@@ -30,55 +30,53 @@ module.exports = function(grunt) {
       package_path = false,
       downloadDone = [],
       options = this.options({
-          version: '0.9.2',
-	  arm_version: null,
+          version: '0.12.2',
           app_name: null,
           app_version: null,
           build_dir: null, // Path where
           force_download: false,
-          win: true,
-          mac: true,
+          win: false,
+          mac: false,
           linux32: false,
           linux64: false,
           linuxarm: false,
           mac_icns: false,
           download_url: 'http://dl.node-webkit.org/',
-          arm_download_url: 'http://localhost/',
-          timestamped_builds: false,
+          timestamped_builds: true,
           credits: false,
           keep_nw: false,
           zip: false  // Do not zip app.nw on OS X
       }),
       webkitFiles = [{
-        'url': "v%VERSION%/node-webkit-v%VERSION%-win-ia32.zip",
+        'url': 'v%VERSION%/node-webkit-v%VERSION%-win-ia32.zip',
         'type': 'win',
         'files': ['ffmpegsumo.dll', 'icudt.dll', 'libEGL.dll', 'libGLESv2.dll', 'nw.exe', 'nw.pak'],
         'nwpath': 'nw.exe',
         'app': '%APPNAME%.exe',
         'exclude': ['nwsnapshot.exe']
       }, {
-        'url': "v%VERSION%/node-webkit-v%VERSION%-osx-ia32.zip",
+        'url': 'v%VERSION%/node-webkit-v%VERSION%-osx-ia32.zip',
         'type': 'mac',
         'files': ['node-webkit.app'],
         'nwpath': '%APPNAME%.app/Contents/Resources',
-        'app': 'app.nw', // We have to keep the name as "app.nw" on OS X!
+        'app': 'app.nw', // We have to keep the name as 'app.nw' on OS X!
         'exclude': ['nwsnapshot']
       }, {
-        'url': "v%VERSION%/node-webkit-v%VERSION%-linux-ia32.tar.gz",
+        'url': 'v%VERSION%/node-webkit-v%VERSION%-linux-ia32.tar.gz',
         'type': 'linux32',
         'files': ['nw', 'nw.pak', 'libffmpegsumo.so'],
         'nwpath': 'nw',
         'app': '%APPNAME%',
         'exclude': ['nwsnapshot']
       }, {
-        'url': "v%VERSION%/node-webkit-v%VERSION%-linux-x64.tar.gz",
+        'url': 'v%VERSION%/node-webkit-v%VERSION%-linux-x64.tar.gz',
         'type': 'linux64',
         'files': ['nw', 'nw.pak', 'libffmpegsumo.so'],
         'nwpath': 'nw',
         'app': '%APPNAME%',
         'exclude': ['nwsnapshot']
       }, {
-        'url': "v%VERSION%/nwjs-v%VERSION%-linux-arm.tar.gz",
+        'url': 'v%VERSION%/nwjs-v%VERSION%-linux-arm.tar.gz',
         'type': 'linuxarm',
         'files': ['nw', 'nw.pak', 'libffmpegsumo.so', 'icudtl.dat'],
         'nwpath': 'nw',
@@ -91,8 +89,8 @@ module.exports = function(grunt) {
     // And generate the release path and files
 
     // Check the target plattforms
-    if (!_.any(_.pick(options,"win","mac","linux32","linux64","linuxarm"))) {
-      grunt.log.warn("No platforms to build!");
+    if (!_.any(_.pick(options,'win','mac','linux32','linux64','linuxarm'))) {
+      grunt.log.warn('No platforms to build!');
       return done();
     }
 
@@ -115,7 +113,7 @@ module.exports = function(grunt) {
 
       // We are building for one of these platforms
       // that requires a zip
-      _.any(_.pick(options, "win", "linux32", "linux64","linuxarm"))
+      _.any(_.pick(options, 'win', 'linux32', 'linux64','linuxarm'))
     );
 
     // Generate the release path
@@ -145,28 +143,23 @@ module.exports = function(grunt) {
     webkitFiles.forEach(function(plattform) {
       if (options[plattform.type]) {
         if (plattform.type === 'linuxarm') {
+<<<<<<< HEAD
+		plattform.url = 'https://raw.githubusercontent.com/LeonardLaszlo/popcorn-time-building-guide-armv7/master/nwjs-v0.12.0-linux-arm.tar.gz';
+=======
 		plattform.url = "https://github.com/LeonardLaszlo/nw.js-armv7-binaries/raw/master/nwjs-v0.12.2-linux-arm.tar.gz";
+>>>>>>> 4177effad203dfb00fbc94611a4111dcfa5eada2
 	} else {
 		plattform.url = options.download_url + plattform.url.split('%VERSION%').join(options.version);
 	}
         plattform.app = plattform.app.split('%APPNAME%').join(options.app_name);
         plattform.nwpath = plattform.nwpath.split('%APPNAME%').join(options.app_name);
 	
-        if (plattform.type === 'linuxarm') {
-		plattform.dest = path.resolve(
-		  options.build_dir,
-		  'cache',
-		  plattform.type,
-		  options.arm_version
-		);
-	} else {
 		plattform.dest = path.resolve(
 		  options.build_dir,
 		  'cache',
 		  plattform.type,
 		  options.version
 		);
-	}
 
         // If force is true we delete the path
         if (grunt.file.isDir(plattform.dest) && options.force_download) {
