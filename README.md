@@ -38,8 +38,8 @@ https://github.com/LeonardLaszlo/popcorn-time-installation-guide-armv7
 http://magazine.odroid.com/assets/201507/pdf/ODROID-Magazine-201507.pdf
 
 ##### Kodi as external player:
-https://github.com/LeonardLaszlo/popcorn-time-installation-guide-armv7/blob/master/KODI.md
+https://github.com/LeonardLaszlo/popcorn-time-building-guide-armv7/blob/master/KODI.md
 
 ##### VPN just for pocorntime:
-https://github.com/LeonardLaszlo/popcorn-time-installation-guide-armv7/blob/master/VPN.md
+https://github.com/LeonardLaszlo/popcorn-time-building-guide-armv7/blob/master/VPN.md
 
