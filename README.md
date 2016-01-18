@@ -1,10 +1,11 @@
 # Popcorn time building guide for ARMv7
 
 This is an experimental building guide for Odroid-U3 and Odroid-XU4!
+THIS GUIDE WILL NOT WORK BECAUSE THE POPCORN TIME PROJECT IS NOT AVAILABLE ANYMORE AT `https://git.popcorntime.io/popcorntime/desktop.git`
 
 ### Known issues
 - It doesn't work on Chromebook!
-- It does not load .torrent files.
+- ~~It does not load .torrent files.~~
 - Some videos/audios can't be decoded yet due to lack of codecs on nw.js.
 
 ### Why is Popcorn Time not available for ARMv7 linux?
