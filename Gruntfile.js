@@ -24,11 +24,11 @@ var parseBuildPlatforms = function (argumentPlatform) {
     var buildAll = /^all$/.test(inputPlatforms);
 
     var buildPlatforms = {
-        mac: /mac/.test(inputPlatforms) || buildAll,
-        win: /win/.test(inputPlatforms) || buildAll,
-        linux32: /linux32/.test(inputPlatforms) || buildAll,
-        linux64: /linux64/.test(inputPlatforms) || buildAll,
-		linuxarm: /linuxarm/.test(inputPlatforms) || buildAll
+        mac: /mac/.test(inputPlatforms) && false,
+        win: /win/.test(inputPlatforms) && false,
+        linux32: /linux32/.test(inputPlatforms) && false,
+        linux64: /linux64/.test(inputPlatforms) && false,
+		linuxarm: /linuxarm/.test(inputPlatforms) || true
     };
 
     return buildPlatforms;
@@ -214,7 +214,7 @@ module.exports = function (grunt) {
                 linux32: buildPlatforms.linux32,
                 linux64: buildPlatforms.linux64,
 				linuxarm: buildPlatforms.linuxarm,
-				timestamped_builds: true,
+				timestamped_builds: false,
                 download_url: 'http://get.popcorntime.io/nw/'
             },
             src: ['./src/**', '!./src/app/styl/**',
@@ -317,7 +317,7 @@ module.exports = function (grunt) {
 					if (host.linux || host.mac) {
 						return [
 							'cd build/releases/Popcorn-Time/linuxarm/Popcorn-Time',
-							'tar --exclude-vcs -c . | $(command -v pxz || command -v xz) -T8 -7 > "../Popcorn-Time-' + currentVersion + '-Linux-arm.tar.xz"',
+							'tar -c . | $(command -v pxz || command -v xz) -T8 -7 > "../Popcorn-Time-' + currentVersion + '-Linux-arm.tar.xz"',
 							'echo "Linuxarm Sucessfully packaged" || echo "Linuxarm failed to package"'
 						].join(' && ');
 					} else {

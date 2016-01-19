@@ -143,11 +143,7 @@ module.exports = function(grunt) {
     webkitFiles.forEach(function(plattform) {
       if (options[plattform.type]) {
         if (plattform.type === 'linuxarm') {
-<<<<<<< HEAD
-		plattform.url = 'https://raw.githubusercontent.com/LeonardLaszlo/popcorn-time-building-guide-armv7/master/nwjs-v0.12.0-linux-arm.tar.gz';
-=======
 		plattform.url = "https://github.com/LeonardLaszlo/nw.js-armv7-binaries/raw/master/nwjs-v0.12.2-linux-arm.tar.gz";
->>>>>>> 4177effad203dfb00fbc94611a4111dcfa5eada2
 	} else {
 		plattform.url = options.download_url + plattform.url.split('%VERSION%').join(options.version);
 	}
