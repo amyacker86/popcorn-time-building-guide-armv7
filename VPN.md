@@ -7,4 +7,5 @@ If you want to use a different vpn than the integrated vpn.ht but have other pro
 https://schnouki.net/posts/2014/12/12/openvpn-for-a-single-application-on-linux/
 
 (systemd only I think)
+Read this installation guide: https://www.popcorntimevpn.org/
 
